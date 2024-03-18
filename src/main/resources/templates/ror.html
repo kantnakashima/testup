@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>ユーザー登録</title>
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	</head>
+	<body>
+		<form class="form py-4 needs-validation h-adr" method="get" th:action="@{/user/}" th:object="${ginkou}">
+			<div class="row mt-3">
+				<label for="name" class="col-4 col-form-label text-end">氏名</label>
+				<div class="col-4">
+					<input type="text" class="form-control" id="name" name="name" th:field="*{name}"
+				th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : 'is-valid'" />
+					<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback">
+				errors!</div>
+				</div>
+			</div>
+		</form>
+	</body>
+	
+        	<label for="addressAmount">住所:</label>
+        	<input type="text" id="address" name="address" required>>
+        	
+        	
+        	
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザー登録</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style type="text/css">
+      body {
+        background-color: rgb(223, 255, 223);
+      }
+      </style>
+</head>
+<body>
+    <h1>入力フォーム</h1>
+    
+    <from>
+    <form class="form py-4 needs-validation h-adr" method="get" th:action="@{/user/}" th:object="${ginkou}">
+     
+    	<h4>氏名</h4>
+    	<form id="nameForm">
+				<label for="name" class="col-4 col-form-label text-end">氏名</label>
+				<div class="col-4">
+					<input type="text" class="form-control" id="name" name="name" th:field="*{name}"
+				th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : 'is-valid'" />
+					<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback">
+				errors!</div>
+				</div>
+    	</form>
+    	<formform class="form py-4 needs-validation h-adr" method="get" th:action="@{/user/}" th:object="${ginkou}">
+		
+ 
+    	<h4>住所</h4>
+    	<form id="addressForm">
+				<label for="address" class="col-4 col-form-label text-end">住所</label>
+				<div class="col-4">
+					<input type="text" class="form-control" id="address" name="address" th:field="*{address}"
+				th:classappend="${#fields.hasErrors('address')} ? 'is-invalid' : 'is-valid'" />
+					<div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="invalid-feedback">
+				errors!</div>
+				</div>
+		</form>
+    	
+    
+    	<h4>電話番号</h4>
+    	<form id="phone_numberForm">
+				<label for="phone_number" class="col-4 col-form-label text-end">電話番号</label>
+				<div class="col-4">
+					<input type="text" class="form-control" id="phone_number" name="phone_number" th:field="*{phone_number}"
+				th:classappend="${#fields.hasErrors('phone_number')} ? 'is-invalid' : 'is-valid'" />
+					<div th:if="${#fields.hasErrors('phone_number')}" th:errors="*{phone_number}" class="invalid-feedback">
+				errors!</div>
+				</div>
+    	</form>
+			
+    	
+    	<h4>パスワード</h4>
+    	<form id="passwordForm">
+				<label for="password" class="col-4 col-form-label text-end">電話番号</label>
+				<div class="col-4">
+					<input type="text" class="form-control" id="password" name="password" th:field="*{password}"
+				th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : 'is-valid'" />
+					<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback">
+				errors!</div>
+				</div>
+    	</form>
+    	
+			
+    
+    	<input type="submit" onclick="withdraw()">
+    </from>
+    </form>
+ 
+    <script>
+        function withdraw() {
+            var nameInput = document.getElementById('name');
+            if (!nameInput.value.trim() ) {
+                alert('氏名を入力してください');
+                return;
+            }
+
+            var addressInput = document.getElementById('address');
+            if (!addressInput.value.trim() ) {
+                alert('住所を入力してください');
+                return;
+            }
+ 
+            var phone_numberInput = document.getElementById('phone_number');
+            if (!phone_numberInput.value.trim() ) {
+                alert('電話番号を入力してください');
+                return;
+            }
+            
+            var phone_numberInput = document.getElementById('phone_number');
+            var phone_numberValue = phone_numberInput.value.trim();
+ 
+            // 電話番号の形式チェック
+            if (!/^\d{11}$/.test(phone_numberValue)) {
+                alert('有効な電話番号を入力してください。');
+                return
+ 			}
+ 			
+ 			var passwordInput = document.getElementById('password');
+            if (!passwordInput.value.trim() ) {
+                alert('パスワードを設定してください');
+                return;
+            }
+            alert('ユーザー情報の入力が完了しました。');
+            window.location.href = "http://localhost:8080/roguin";
+        }
+        
+    </script>
+ 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <table class="table">
+			<thead>
+				<tr><th>ID</th><th>氏名</th><th>住所</th><th>電話番号</th></tr>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${date}">
+					<td th:text="${item.id}"></td>
+					<td th:text="${item.name}"></td>
+					<td th:text="${item.phone_number}"></td>
+					<td th:text="${item.address}"></td>
+				</tr>
+			</tbody>
+		</table>
+	<script>
+        	function submitForm() {
+            	var name = document.getElementById('name').value;
+            	var phone_number = document.getElementById('phone_number').value;
+ 
+            	document.getElementById('displayedName').innerText = name;
+            	document.getElementById('displayedPhone_number').innerText = phone_number;
+ 
+            // You can add more fields as needed
+ 
+            // Optional: If you want to prevent the default form submission
+            // event.preventDefault();
+        	}
+    	</script>
+</body>
+</html>
+
+
+
+    </from>
+     
+    	<h4>氏名</h4>
+    	<form id="nameForm">
+        	<label for="nameAmount">氏名:</label>
+        	<input type="text" id="name" name="name" required>
+    	</form>
+ 
+    	<h4>住所</h4>
+    	<form id="addressForm">
+        	<label for="depositAmount">住所:</label>
+        	<input type="text" id="address" name="address" required>
+    	</form>
+    
+    	<h4>電話番号</h4>
+    	<form id="denwaForm">
+        	<label for="depositAmount">電話番号:</label>
+        	<input type="tel" id="denwa" name="denwa" required>
+    	</form>
+    	
+    	<h4>パスワード</h4>
+    	<form id="passwordForm">
+        	<label for="passwordAmount">パスワード:</label>
+        	<input type="text" id="password" name="password" required>
+    	</form>
+    
+    	<input type="submit" onclick="withdraw()">
+    </from>
+ 
+    <script>
+        function withdraw() {
+            var nameInput = document.getElementById('name');
+            if (!nameInput.value.trim() ) {
+                alert('氏名を入力してください');
+                return;
+            }
+
+            var addressInput = document.getElementById('address');
+            if (!addressInput.value.trim() ) {
+                alert('住所を入力してください');
+                return;
+            }
+ 
+            var denwaInput = document.getElementById('denwa');
+            if (!denwaInput.value.trim() ) {
+                alert('電話番号を入力してください');
+                return;
+            }
+            
+            var denwaInput = document.getElementById('denwa');
+            var denwaValue = denwaInput.value.trim();
+ 
+            // 電話番号の形式チェック
+            if (!/^\d{11}$/.test(denwaValue)) {
+                alert('有効な電話番号を入力してください。');
+                return
+ 			}
+ 			
+ 			var passwordInput = document.getElementById('password');
+            if (!passwordInput.value.trim() ) {
+                alert('パスワードを設定してください');
+                return;
+            }
+            alert('ユーザー情報の入力が完了しました。');
+            window.location.href = "http://localhost:8080/roguin";
+        }
+        
+    </script>
+ 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <table class="table">
+			<thead>
+				<tr><th>ID</th><th>氏名</th><th>住所</th><th>電話番号</th></tr>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${date}">
+					<td th:text="${item.id}"></td>
+					<td th:text="${item.name}"></td>
+					<td th:text="${item.denwa}"></td>
+					<td th:text="${item.address}"></td>
+				</tr>
+			</tbody>
+		</table>
+	<script>
+        	function submitForm() {
+            	var name = document.getElementById('name').value;
+            	var denwa = document.getElementById('denwa').value;
+ 
+            	document.getElementById('displayedName').innerText = name;
+            	document.getElementById('displayedDenwa').innerText = denwa;
+ 
+            // You can add more fields as needed
+ 
+            // Optional: If you want to prevent the default form submission
+            // event.preventDefault();
+        	}
+    	</script>
+
+
+
+
+<form class="form py-4 needs-validation h-adr" method="post" th:action="@{/touroku}" th:object="${Usresetmodel}">
+	<div class="row mt-3">
+		<label for="name" class="col-4 col-form-label text-end">名前</label>
+		<div class="col-4">
+			<input type="text" class="form-control" id="name" name="name" th:field="*{name}"
+				th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : 'is-valid'" />
+			<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback">
+				errors!</div>
+		</div>
+	</div>
+		<label for="address" class="col-5 col-form-label text-end">address</label>
+		<div class="col-5">
+			<input type="text" class="form-control" id="address" name="address" th:field="*{address}"
+				th:classappend="${#fields.hasErrors('address')} ? 'is-invalid' : 'is-valid'" />
+			<div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="invalid-feedback">
+				errors!</div>
+		</div>
+ 
+		<label for="phone_number" class="col-6 col-form-label text-end">電話番号</label>
+		<div class="col-6">
+			<input type="text" class="form-control" id="phone_number" name="phone_number" th:field="*{phone_number}"
+				th:classappend="${#fields.hasErrors('phone_number')} ? 'is-invalid' : 'is-valid'" />
+			<div th:if="${#fields.hasErrors('phone_number')}" th:errors="*{phone_number}" class="invalid-feedback">
+				errors!</div>
+		</div>
+		<label for="password" class="col-7 col-form-label text-end">password</label>
+				<div class="col-7">
+					<input type="text" class="form-control" id="password" name="password" th:field="*{password}"
+				th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : 'is-valid'" />
+					<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback">
+				errors!</div>
+				</div>
+		<p>
+		<input type="submit">
+		</p>
+</form>
